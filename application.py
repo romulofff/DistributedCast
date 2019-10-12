@@ -3,8 +3,8 @@ from boto3.dynamodb.conditions import Attr, Key
 from flask import Flask, request
 from flask_restplus import Api, Resource, fields
 
-flask_app = Flask(__name__)
-app = Api(app=flask_app,
+application = Flask(__name__)
+app = Api(app=application,
           version="0.1",
           title="Dynamo Worker",
           description="This API accesses a DynamoDB table and can manage its Data.\n \

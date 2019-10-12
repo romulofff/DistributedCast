@@ -3,7 +3,9 @@ venv/
 __pycache__/
 
 instance/
-.vscode
+.vscode/
+.vscode/*
+
 .pytest_cache/
 .coverage
 htmlcov/
