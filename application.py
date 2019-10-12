@@ -5,7 +5,7 @@ from flask_restplus import Api, Resource, fields
 
 application = Flask(__name__)
 app = Api(app=application,
-          version="0.1",
+          version="1.0",
           title="Dynamo Worker",
           description="This API accesses a DynamoDB table and can manage its Data.\n \
                         Click on \'dynamo\' to use the methods GET and POST and work with the \
