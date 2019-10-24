@@ -33,6 +33,9 @@ model_file = app.model('Podcast', {
 }
 )
 
+S3_BUCKET = os.environ.get('S3_BUCKET')
+S3_LOCATION = os.environ.get('S3_LOCATION')
+
 @ns.route("/<int:epID>")
 @ns.doc(description="Use this to Retrieve Data from the Database.\
                         \n Use the episode ID to retrieve it \
@@ -73,9 +76,9 @@ class DownloadClass(Resource):
              params={"epID": "Podcast episode ID"})
     def get(self, epID):
 
-        S3_BUCKET = "distribucast"
         s3 = boto3.client('s3')
-
+        S3_BUCKET = os.environ.get('S3_BUCKET')
+        
         dynamo = boto3.resource('dynamodb', region_name='us-east-1')
         table = dynamo.Table('DAD-ATV-04')
 
@@ -142,12 +145,11 @@ class UploadClass(Resource):
         dynamo = boto3.resource('dynamodb', region_name='us-east-1')
         table = dynamo.Table('DAD-ATV-04')
 
-        S3_BUCKET = "distribucast"
-        S3_LOCATION = "https://distribucast.s3.amazonaws.com/"
         s3 = boto3.client('s3')
+        S3_BUCKET = os.environ.get('S3_BUCKET')
+        S3_LOCATION = os.environ.get('S3_LOCATION')
 
         args = parsers.file_upload.parse_args()
-
         episode_file = args['mp3_file']
 
         try:

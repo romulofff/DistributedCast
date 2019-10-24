@@ -5,7 +5,7 @@ __pycache__/
 instance/
 .vscode/
 .vscode/*
-.mp3
+*.mp3
 .pytest_cache/
 .coverage
 htmlcov/
