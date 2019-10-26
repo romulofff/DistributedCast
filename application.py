@@ -113,7 +113,7 @@ class DeleteClass(Resource):
 
     @app.doc(responses={200: 'OK', 400: 'Invalid Data'},
              params={"epID": "Podcast episode ID"})
-    def get(self, epID):
+    def delete(self, epID):
         dynamo = boto3.resource('dynamodb', region_name='us-east-1')
         table = dynamo.Table('DAD-ATV-04')
 
