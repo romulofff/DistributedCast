@@ -3,7 +3,7 @@ import os
 import boto3
 import werkzeug
 from boto3.dynamodb.conditions import Attr, Key
-from flask import Flask, request
+from flask import Flask, request, Response
 from flask_restplus import Api, Resource, fields
 
 import parsers
@@ -92,12 +92,14 @@ class DownloadClass(Resource):
 
             # This downloads the file
             filename = response["Item"]["EpisodeLink"].split('/')[-1]
-            s3.download_file(S3_BUCKET, filename, os.path.join(os.getcwd(),filename))
-
-            return {
-                "status": "Podcast downloaded.",
-                "data": response["Item"]
-            }
+            podcast_file = s3.get_object(Bucket=S3_BUCKET, Key=filename)
+            
+            return Response(
+                podcast_file['Body'],
+                mimetype='audio/mp3',
+                status="Podcast Downloaded",
+                headers={"Content-Disposition": "attatchment;filename={}".format(filename)},
+            )
 
         except Exception as e:
             print(e)
