@@ -158,7 +158,8 @@ class UploadClass(Resource):
             s3.upload_fileobj(
                 episode_file,
                 S3_BUCKET,
-                str(episode_file.filename)
+                str(episode_file.filename),
+                ExtraArgs={'ACL':'public-read'}
 
             )
         except Exception as e:
