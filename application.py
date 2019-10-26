@@ -13,7 +13,7 @@ app = Api(app=application,
           version="1.0",
           title="DistribuCast",
           description="This API accesses a DynamoDB table and can manage its Data.\n \
-                        Click on \'dynamo\' to use the methods GET and POST and work with the \
+                        Click on \'Podcast\' to use the methods GET, POST and DELTE to work with the \
                         Database items. Each method section contains information on how to use it.")
 
 ns = app.namespace('podcast', description="Main API")
@@ -97,7 +97,6 @@ class DownloadClass(Resource):
             return Response(
                 podcast_file['Body'],
                 mimetype='audio/mp3',
-                status="Podcast Downloaded",
                 headers={"Content-Disposition": "attatchment;filename={}".format(filename)},
             )
 
