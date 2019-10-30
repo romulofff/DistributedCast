@@ -1,0 +1,9 @@
+<div *ngIf="podcast">
+    <h2>{{podcast.Title | uppercase}} Details</h2>
+    <div><span>id: </span>{{podcast.EpisodeID}}</div>
+    <div>
+        <label>
+            <input [(ngModel)]="podcast.Title" placeholder="podcast"/>
+        </label>
+    </div>
+</div>

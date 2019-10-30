@@ -7,12 +7,4 @@
     </li>
 </ul>
 
-<div *ngIf="selectedPodcast">>
-    <h2>{{ selectedPodcast.Title | uppercase }} Details</h2>
-    <div><span>id: </span>{{selectedPodcast.EpisodeID}}</div>
-    <div>
-        <label>name:
-            <input [(ngModel)]="selectedPodcast.Title" placeholder="Title"/>
-        </label>
-    </div>
-</div>
+<app-podcast-detail [podcast]="selectedPodcast"></app-podcast-detail>

@@ -6,11 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PodcastsComponent } from './podcasts/podcasts.component';
+import { PodcastDetailComponent } from './podcast-detail/podcast-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PodcastsComponent
+    PodcastsComponent,
+    PodcastDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

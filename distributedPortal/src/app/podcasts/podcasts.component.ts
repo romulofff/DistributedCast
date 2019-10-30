@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { Podcast } from '../podcast';
-import { PODCASTS } from '../mock-podcasts'
+import { PodcastService } from '../podcast.service';
+import { PODCASTS } from '../mock-podcasts';
 
 @Component({
   selector: 'app-podcasts',
@@ -9,15 +12,25 @@ import { PODCASTS } from '../mock-podcasts'
 })
 export class PodcastsComponent implements OnInit {
 
-  podcasts = PODCASTS;
+  podcasts: Podcast[];
+
   selectedPodcast: Podcast;
   onSelect(podcast: Podcast): void {
     this.selectedPodcast = podcast;
   }
 
-  constructor() { }
+  constructor(private podcastService: PodcastService) { }
+
+  getPodcasts(): void {
+    this.podcastService.getPodcasts().subscribe(podcasts => this.podcasts = podcasts)
+  }
+
+  // getPodcasts(): void {
+    // this.podcasts = this.podcastService.getPodcasts();
+  // }
 
   ngOnInit() {
+    this.getPodcasts();
   }
 
 }
