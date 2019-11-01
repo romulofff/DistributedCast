@@ -1,9 +1,10 @@
 <div *ngIf="podcast">
     <h2>{{podcast.Title | uppercase}} Details</h2>
-    <div><span>id: </span>{{podcast.EpisodeID}}</div>
+    <div><span>Episode ID: </span>{{podcast.EpisodeID}}</div>
     <div>
         <label>
             <input [(ngModel)]="podcast.Title" placeholder="podcast"/>
         </label>
     </div>
+    <button (click)="goBack()">Go back</button>
 </div>

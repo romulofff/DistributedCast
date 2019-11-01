@@ -14,20 +14,12 @@ export class PodcastsComponent implements OnInit {
 
   podcasts: Podcast[];
 
-  selectedPodcast: Podcast;
-  onSelect(podcast: Podcast): void {
-    this.selectedPodcast = podcast;
-  }
-
   constructor(private podcastService: PodcastService) { }
 
   getPodcasts(): void {
-    this.podcastService.getPodcasts().subscribe(podcasts => this.podcasts = podcasts)
+    this.podcastService.getPodcasts()
+      .subscribe(podcasts => this.podcasts = podcasts)
   }
-
-  // getPodcasts(): void {
-    // this.podcasts = this.podcastService.getPodcasts();
-  // }
 
   ngOnInit() {
     this.getPodcasts();
