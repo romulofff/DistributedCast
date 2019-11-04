@@ -206,7 +206,8 @@ class ListClass(Resource):
 
         itemsList = response["Items"]
 
-        items = {"Episode: {}".format(
-            itemsList[i]["EpisodeID"]): itemsList[i] for i in range(0, len(itemsList))}
+        # items = {"Episode: {}".format(
+        #     itemsList[i]["EpisodeID"]): itemsList[i] for i in range(0, len(itemsList))}
 
-        return items
+        res = { "data": itemsList}
+        return res
