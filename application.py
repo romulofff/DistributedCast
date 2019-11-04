@@ -16,7 +16,7 @@ app = Api(app=application,
                         Click on \'Podcast\' to use the methods GET, POST and DELTE to work with the \
                         Database items. Each method section contains information on how to use it.")
 
-CORS(app)
+CORS(application)
 ns = app.namespace('podcast', description="Main API")
 
 model = app.model('Podcast', {

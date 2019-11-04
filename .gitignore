@@ -3,7 +3,7 @@ venv/
 __pycache__/
 
 instance/
-.vscode/
+.vscode/setting.json
 .vscode/*
 *.mp3
 .pytest_cache/
@@ -17,3 +17,4 @@ build/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+*.zip
