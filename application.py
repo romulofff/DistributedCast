@@ -5,6 +5,7 @@ import werkzeug
 from boto3.dynamodb.conditions import Attr, Key
 from flask import Flask, request, Response
 from flask_restplus import Api, Resource, fields
+from flask_cors import CORS
 
 import parsers
 
@@ -16,6 +17,7 @@ app = Api(app=application,
                         Click on \'Podcast\' to use the methods GET, POST and DELTE to work with the \
                         Database items. Each method section contains information on how to use it.")
 
+CORS(application)
 ns = app.namespace('podcast', description="Main API")
 
 model = app.model('Podcast', {
