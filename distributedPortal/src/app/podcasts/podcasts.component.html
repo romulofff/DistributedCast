@@ -1,4 +1,36 @@
 <h2>Podcasts</h2>
+
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <div>
+            <h3>Add Podcast Episode</h3>            
+            <label> Title:
+                <input #title/>
+            </label>
+            <label> Author:
+                <input #author/>
+            </label>
+            <label> Episode ID:
+                <input #id/>
+            </label>
+        </div>
+        
+        <div class="col-md-6 offset-md-3">
+            <div class="form-group">
+                <label for="file">Choose File: </label>
+                <input type="file" name="podcast" (change)="handleFileInput($event.target.files)"/>
+            </div>
+            <div class="mb-3" *ngIf="uploadedFilePath">
+                {{uploadedFilePath}}
+            </div>
+                
+            <div class="form-group">
+                <button class="btn btn-primary"  (click)="add(title.value, author.value, id.value); title.value=''; author.value=''; id.value=''; ">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <ul class="podcasts">
     <li *ngFor="let podcast of podcasts"> 
         <a routerLink='/detail/{{podcast.EpisodeID}}'>

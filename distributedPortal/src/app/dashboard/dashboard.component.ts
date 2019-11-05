@@ -16,8 +16,9 @@ export class DashboardComponent implements OnInit {
     this.getPodcasts();
   }
 
-  getPodcasts(): void {
-    this.podcastService.getPodcasts()
-      .subscribe(podcasts => this.podcasts = podcasts.slice(1, 5));
+  getPodcasts() {
+
+    return this.podcastService.getPodcasts()
+      .subscribe((content) => {this.podcasts = content.data;})
   }
 }

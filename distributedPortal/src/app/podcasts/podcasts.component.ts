@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
 
-import { Podcast } from '../podcast';
 import { PodcastService } from '../podcast.service';
-import { PODCASTS } from '../mock-podcasts';
 
 @Component({
   selector: 'app-podcasts',
@@ -12,13 +9,29 @@ import { PODCASTS } from '../mock-podcasts';
 })
 export class PodcastsComponent implements OnInit {
 
-  podcasts: Podcast[];
+  podcasts: any=[];
 
   constructor(private podcastService: PodcastService) { }
 
-  getPodcasts(): void {
-    this.podcastService.getPodcasts()
-      .subscribe(podcasts => this.podcasts = podcasts)
+  getPodcasts() {
+    return this.podcastService.getPodcasts()
+      .subscribe(
+        (content) => {
+          this.podcasts = content.data;
+        })
+  }
+
+  fileToUpload: File = null;
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    console.log(this.fileToUpload)
+  }
+
+  add(title: string, author: string, id: string): void {
+    this.podcastService.addPodcast(title, author, id, this.fileToUpload)
+      .subscribe(podcast => {
+        this.podcasts.push(podcast);
+      });
   }
 
   ngOnInit() {

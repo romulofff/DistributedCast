@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 import { Podcast } from './podcast';
-import { PODCASTS } from './mock-podcasts';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +16,51 @@ export class PodcastService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-
   private log(message: string) {
     this.messageService.add(`PodcastService: ${message}`);
   }
 
-  private podcastsUrl = 'http://distcast.zrmmwsdctd.us-east-1.elasticbeanstalk.com/';
+  private podcastsUrl = 'http://distcast.zrmmwsdctd.us-east-1.elasticbeanstalk.com/podcast';
   
-  getPodcasts(): Observable<Podcast[]> {
-    this.log("fetched podcasts.")
-    return this.http.get<Podcast[]>(this.podcastsUrl)
+  httpOptions = {
+    headers: new HttpHeaders({  'Content-Type': 'audio/mp3',
+                                'accept': 'application/json'})
+  };
+
+  getPodcasts(): Observable<Podcast> {
+    return this.http.get<Podcast>(this.podcastsUrl+'/listEpisodes')
       .pipe(
-        catchError(this.handleError<Podcast[]>('getPodcasts', []))
+        tap(_ => this.log('fetched podcasts')),
+        catchError(this.handleError)
       );
   }
 
-  getPodcast(EpisodeID: number): Observable<Podcast> {
-    this.log(`fetched podcast EpisodeID=${EpisodeID}`);
-    return of(PODCASTS.find(podcast => podcast.EpisodeID === EpisodeID))
+  getPodcast(EpisodeID: number) {
+    const url = `${this.podcastsUrl}/${EpisodeID}`;
+    return this.http.get<Podcast>(url).pipe(
+      tap(_ => this.log(`fetched podcast id=${EpisodeID}`)),
+      catchError(this.handleError<Podcast>(`getPodcast id=${EpisodeID}`))
+    )
+  }
+
+  fileData: File = null;
+  addPodcast(title: string, author: string, id: string, fileToUpload: File) {
+    const formData = new FormData();
+    this.fileData = fileToUpload
+    formData.append('mp3_file', this.fileData)
+   
+    const url = `${this.podcastsUrl}/upload?EpisodeID=${id}&Author=${author}&Title=${title}`;
+
+    console.log(formData)
+    const body = {
+      "mp3_file": formData
+    }
+    return this.http.post(url, body, this.httpOptions)
+    // return this.http.post(url, formData, this.httpOptions)
+    //   .pipe(
+    //     // tap((newPodcast: Podcast) => this.log(`Added Podcas with id=${newPodcast.EpisodeID}`)),
+    //     catchError(this.handleError<Podcast>('addPodcast'))
+    //   )
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

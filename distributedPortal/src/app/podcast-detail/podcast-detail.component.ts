@@ -30,6 +30,11 @@ export class PodcastDetailComponent implements OnInit {
       .subscribe(podcast => this.podcast = podcast);
   }
 
+  // save(): void {
+  //   this.podcastService.updatePodcast(this.podcast)
+  //     .subscribe(() => this.goBack());
+  // }
+
   goBack(): void {
     this.location.back();
   }
