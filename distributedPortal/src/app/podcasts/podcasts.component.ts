@@ -27,7 +27,7 @@ export class PodcastsComponent implements OnInit {
     console.log(this.fileToUpload)
   }
 
-  add(title: string, author: string, id: string): void {
+  click(title: string, author: string, id: string): void {
     this.podcastService.addPodcast(title, author, id, this.fileToUpload)
       .subscribe(podcast => {
         this.podcasts.push(podcast);

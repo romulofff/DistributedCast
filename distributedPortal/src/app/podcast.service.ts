@@ -23,7 +23,7 @@ export class PodcastService {
   private podcastsUrl = 'http://distcast.zrmmwsdctd.us-east-1.elasticbeanstalk.com/podcast';
   
   httpOptions = {
-    headers: new HttpHeaders({  'Content-Type': 'audio/mp3',
+    headers: new HttpHeaders({  'Content-Type': 'multipart/form-data',
                                 'accept': 'application/json'})
   };
 
@@ -48,12 +48,17 @@ export class PodcastService {
     const formData = new FormData();
     this.fileData = fileToUpload
     formData.append('mp3_file', this.fileData)
-   
+    
     const url = `${this.podcastsUrl}/upload?EpisodeID=${id}&Author=${author}&Title=${title}`;
-
+    
+    console.log(this.fileData)
     console.log(formData)
+
     const body = {
-      "mp3_file": formData
+      "EpisodeID": id,
+      "Author": author,
+      "Title": title,
+      "mp3_file": fileToUpload
     }
     return this.http.post(url, body, this.httpOptions)
     // return this.http.post(url, formData, this.httpOptions)
