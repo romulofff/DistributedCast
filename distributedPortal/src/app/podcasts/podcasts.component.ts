@@ -23,13 +23,14 @@ export class PodcastsComponent implements OnInit {
 
   fileToUpload: File = null;
   handleFileInput(files: FileList) {
+    console.log(files)
     this.fileToUpload = files.item(0);
-    console.log(this.fileToUpload)
   }
 
-  click(title: string, author: string, id: string): void {
+  add(title: string, author: string, id: string): void {
     this.podcastService.addPodcast(title, author, id, this.fileToUpload)
       .subscribe(podcast => {
+        
         this.podcasts.push(podcast);
       });
   }

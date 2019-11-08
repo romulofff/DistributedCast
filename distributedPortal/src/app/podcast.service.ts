@@ -22,10 +22,6 @@ export class PodcastService {
 
   private podcastsUrl = 'http://distcast.zrmmwsdctd.us-east-1.elasticbeanstalk.com/podcast';
   
-  httpOptions = {
-    headers: new HttpHeaders({  'Content-Type': 'multipart/form-data',
-                                'accept': 'application/json'})
-  };
 
   getPodcasts(): Observable<Podcast> {
     return this.http.get<Podcast>(this.podcastsUrl+'/listEpisodes')
@@ -45,27 +41,17 @@ export class PodcastService {
 
   fileData: File = null;
   addPodcast(title: string, author: string, id: string, fileToUpload: File) {
-    const formData = new FormData();
-    this.fileData = fileToUpload
-    formData.append('mp3_file', this.fileData)
-    
     const url = `${this.podcastsUrl}/upload?EpisodeID=${id}&Author=${author}&Title=${title}`;
-    
-    console.log(this.fileData)
-    console.log(formData)
 
-    const body = {
-      "EpisodeID": id,
-      "Author": author,
-      "Title": title,
-      "mp3_file": fileToUpload
-    }
-    return this.http.post(url, body, this.httpOptions)
-    // return this.http.post(url, formData, this.httpOptions)
-    //   .pipe(
-    //     // tap((newPodcast: Podcast) => this.log(`Added Podcas with id=${newPodcast.EpisodeID}`)),
-    //     catchError(this.handleError<Podcast>('addPodcast'))
-    //   )
+    const formData = new FormData();
+    formData.append('mp3_file', fileToUpload, fileToUpload.name)
+
+
+    return this.http.post(url, formData)
+      .pipe(
+        // tap((newPodcast: Podcast) => this.log(`Added Podcas with id=${newPodcast.EpisodeID}`)),
+        catchError(this.handleError<Podcast>('addPodcast'))
+      )
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

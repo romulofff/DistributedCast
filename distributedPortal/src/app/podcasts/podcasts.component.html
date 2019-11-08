@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="file">Choose File: </label>
                 <input type="file" name="podcast" (change)="handleFileInput($event.target.files)" #file/> <br>
-                <button class="btn btn-primary"  (click)="click(title.value, author.value, id.value, file.value); title.value=''; author.value=''; id.value=''; file.value='' ">Add</button>
+                <button class="btn btn-primary"  (click)="add(title.value, author.value, id.value, file.value); title.value=''; author.value=''; id.value=''; file.value='' ">Add</button>
             </div>
             <div class="mb-3" *ngIf="uploadedFilePath">
                 {{uploadedFilePath}}
