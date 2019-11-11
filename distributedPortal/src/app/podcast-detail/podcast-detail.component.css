@@ -11,18 +11,26 @@ label {
     font-size: 1em;
     padding-left: .4em;
   }
+  #download-btn {
+    background-color: rgb(1, 146, 1);
+    color: white;
+    padding: 8px 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  #download-btn:hover {
+    background-color: rgb(2, 114, 7);
+  }
   button {
-    margin-top: 20px;
-    font-family: Arial;
-    background-color: #eee;
+    background-color: rgb(224, 224, 224);
     border: none;
-    padding: 5px 10px;
+    padding: 8px 8px;
     border-radius: 4px;
     cursor: pointer;
     cursor: hand;
   }
   button:hover {
-    background-color: #cfd8dc;
+    background-color: #bfc7ca;
   }
   button:disabled {
     background-color: #eee;

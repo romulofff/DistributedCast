@@ -3,11 +3,19 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<div>
+    <h2 class=mat-h2>Episode List</h2>
+    <ul class="podcasts">
+        <li *ngFor="let podcast of podcasts" routerLink='/detail/{{podcast.EpisodeID}}' class="mat-h4"> 
+                <span class="badge">{{podcast.EpisodeID}}</span>{{podcast.Title}}
+        </li>
+    </ul>
+</div>
 
 <div class="container">
     <div class="col-md-6 offset-md-3">
         <div>
-            <h3 class="mat-h3">Add Podcast Episode</h3>            
+            <h3 class="mat-h3" style="text-decoration: underline;">Add Podcast Episode</h3>            
             <label class="mat-h4"> Title:
                 <input #title/>&#160;
             </label>
@@ -23,7 +31,7 @@
             <div class="form-group">
                 <label for="file" class="mat-h4">Choose File: </label>
                 <input type="file" name="podcast" (change)="handleFileInput($event.target.files)" #file/>
-                <!-- <br> -->
+                <br>
                 <button id="add-btn" (click)="add(title.value, author.value, id.value, file.value); title.value=''; author.value=''; id.value=''; file.value='' ">ADD</button>
             </div>
             <div class="mb-3" *ngIf="uploadedFilePath">
@@ -37,20 +45,10 @@
 </div>
 <br>
 
-<div>
-    <h2 class=mat-h2>Episode List</h2>
-    <ul class="podcasts">
-        <li *ngFor="let podcast of podcasts"> 
-            <a routerLink='/detail/{{podcast.EpisodeID}}' class="mat-h4">
-                <span class="badge">{{podcast.EpisodeID}}</span> {{podcast.Title}}
-            </a>
-        </li>
-    </ul>
-</div>
 
 <div class="container">
     <div class="col-md-6 offset-md-3">    
-        <h3 class="mat-h3">Delete Podcast Episode</h3>            
+        <h3 class="mat-h3" style="text-decoration: underline;">Delete Podcast Episode</h3>            
         <label class="mat-h4"> Episode ID:
             <input #epid/>&#160;
             <button (click)="delete(epid.value); epid.value='';"  id="delete-btn">DELETE</button>

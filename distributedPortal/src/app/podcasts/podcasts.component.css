@@ -3,21 +3,23 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 35em;
 }
 .podcasts li {
   cursor: pointer;
   position: relative;
   left: 0;
+  text-align: initial;
   background-color: #2395d3;
   margin: .5em;
   padding: .3em 0;
+  width: auto;
   height: 1.6em;
   border-radius: 4px;
 }
 .podcasts li:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(232, 236, 238);
+  color: #039be5;
+  background-color: #cfd8dc;
   left: .1em;
 }
 .podcasts li.selected {
@@ -37,11 +39,12 @@
   line-height: 1em;
   position: relative;
   left: -1px;
-  top: -4px;
+  top: -5px;
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
 button {
   margin-top: 20px;
   font-family: Arial;
@@ -55,11 +58,13 @@ button {
 #add-btn {
   background-color: green;
   color: white;
-  padding: 8px 8px;
+  padding: 8px 30px;
   margin: 4px 0;
   border-radius: 4px;
   box-sizing: border-box;
-
+}
+#add-btn:hover {
+  background-color: rgb(2, 114, 7);
 }
 #delete-btn {
   background-color: crimson;
@@ -81,7 +86,6 @@ input:focus {
   background-color: lightblue;
 }
 a {
-  
   color: black;
   text-decoration: none;
 }
