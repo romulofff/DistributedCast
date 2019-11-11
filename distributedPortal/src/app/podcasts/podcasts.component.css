@@ -42,3 +42,46 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+button {
+  margin-top: 20px;
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+#add-btn {
+  background-color: green;
+  color: white;
+  padding: 8px 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+#delete-btn {
+  background-color: crimson;
+  color: white;
+  padding: 8px 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+input {
+  /* width: 100%; */
+  padding: 6px 6px;
+  margin: 4px 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input:focus {
+  background-color: lightblue;
+}
+a {
+  
+  color: black;
+  text-decoration: none;
+}

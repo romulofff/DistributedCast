@@ -54,6 +54,11 @@ export class PodcastService {
       )
   }
 
+  deletePodcast(id: string) {
+    const url = `${this.podcastsUrl}/${id}/delete`;
+    return this.http.delete(url)
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

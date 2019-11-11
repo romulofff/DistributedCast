@@ -1,12 +1,17 @@
+<!-- Add  library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+<!-- Auto width -->
 <div *ngIf="podcast">
-    <h2>{{podcast.data.Title}} Details</h2>
-    <div><span>Episode ID: </span>{{podcast.data.EpisodeID}}</div>
-    <div><span>Author: </span>{{podcast.data.Author}}</div>
+    <h2 class="mat-h2">{{podcast.data.Title}} Details</h2>
+    <div class="mat-h3">Episode ID: {{podcast.data.EpisodeID}}</div>
+    <div class="mat-h3">Author: {{podcast.data.Author}}</div>
     <div>
-        <label>
-            <input [(ngModel)]="podcast.data.Title" placeholder="podcast"/>
-        </label>
+        <a href={{podcast.data.EpisodeLink}}>
+            <button     ><i class="fa fa-download"></i> Download</button>
+        </a>
     </div>
-    <!-- <button (click)="save()">Save</button> -->
+
     <button (click)="goBack()">Go back</button>
 </div>

@@ -6,7 +6,7 @@ import { PodcastsComponent } from './podcasts/podcasts.component';
 import { PodcastDetailComponent } from "./podcast-detail/podcast-detail.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'podcasts', component: PodcastsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:EpisodeID', component: PodcastDetailComponent },

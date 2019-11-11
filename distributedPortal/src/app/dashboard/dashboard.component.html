@@ -1,9 +1,11 @@
-<h3>Top podcasts</h3>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+<h3 class="mat-h1" >Top podcasts</h3>
 <div class="grid grid-pad">
   <a *ngFor="let podcast of podcasts" class="col-1-4"
     routerLink="/detail/{{podcast.EpisodeID}}">
     <div class="module podcast">
-      <h4>{{podcast.Title}}</h4>
+      <h4 class="mat-h4" align="center">{{podcast.Title}}</h4>
     </div>
   </a>
 </div>

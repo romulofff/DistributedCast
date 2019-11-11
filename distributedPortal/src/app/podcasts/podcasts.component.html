@@ -1,40 +1,59 @@
-<h2>Podcasts</h2>
+<h1 class="mat-h1">Podcasts</h1>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <div class="container">
     <div class="col-md-6 offset-md-3">
         <div>
-            <h3>Add Podcast Episode</h3>            
-            <label> Title:
-                <input #title/>
+            <h3 class="mat-h3">Add Podcast Episode</h3>            
+            <label class="mat-h4"> Title:
+                <input #title/>&#160;
             </label>
-            <label> Author:
-                <input #author/>
+            <label class="mat-h4"> Author:
+                <input #author/>&#160;
             </label>
-            <label> Episode ID:
-                <input #id/>
+            <label class="mat-h4"> Episode ID:
+                <input #id/>&#160;
             </label>
         </div>
         
         <div class="col-md-6 offset-md-3">
             <div class="form-group">
-                <label for="file">Choose File: </label>
-                <input type="file" name="podcast" (change)="handleFileInput($event.target.files)" #file/> <br>
-                <button class="btn btn-primary"  (click)="add(title.value, author.value, id.value, file.value); title.value=''; author.value=''; id.value=''; file.value='' ">Add</button>
+                <label for="file" class="mat-h4">Choose File: </label>
+                <input type="file" name="podcast" (change)="handleFileInput($event.target.files)" #file/>
+                <!-- <br> -->
+                <button id="add-btn" (click)="add(title.value, author.value, id.value, file.value); title.value=''; author.value=''; id.value=''; file.value='' ">ADD</button>
             </div>
             <div class="mb-3" *ngIf="uploadedFilePath">
                 {{uploadedFilePath}}
             </div>
-                
+            
             <div class="form-group">
             </div>
         </div>
     </div>
 </div>
+<br>
 
-<ul class="podcasts">
-    <li *ngFor="let podcast of podcasts"> 
-        <a routerLink='/detail/{{podcast.EpisodeID}}'>
-            <span class="badge">{{podcast.EpisodeID}}</span> {{podcast.Title}}
-        </a>
-    </li>
-</ul>
+<div>
+    <h2 class=mat-h2>Episode List</h2>
+    <ul class="podcasts">
+        <li *ngFor="let podcast of podcasts"> 
+            <a routerLink='/detail/{{podcast.EpisodeID}}' class="mat-h4">
+                <span class="badge">{{podcast.EpisodeID}}</span> {{podcast.Title}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="col-md-6 offset-md-3">    
+        <h3 class="mat-h3">Delete Podcast Episode</h3>            
+        <label class="mat-h4"> Episode ID:
+            <input #epid/>&#160;
+            <button (click)="delete(epid.value); epid.value='';"  id="delete-btn">DELETE</button>
+        </label>
+    </div>
+</div>

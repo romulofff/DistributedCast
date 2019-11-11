@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from "@angular/material/icon";
 
 import { AppComponent } from './app.component';
 import { PodcastsComponent } from './podcasts/podcasts.component';
@@ -23,7 +24,9 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

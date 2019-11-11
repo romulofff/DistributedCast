@@ -17,7 +17,7 @@ export class PodcastsComponent implements OnInit {
     return this.podcastService.getPodcasts()
       .subscribe(
         (content) => {
-          this.podcasts = content.data;
+          this.podcasts = content.data
         })
   }
 
@@ -33,6 +33,13 @@ export class PodcastsComponent implements OnInit {
         
         this.podcasts.push(podcast);
       });
+  }
+
+  delete(id:string): void {
+    this.podcastService.deletePodcast(id)
+      .subscribe(podcast => {
+        this.podcasts.push(podcast);
+      })
   }
 
   ngOnInit() {
