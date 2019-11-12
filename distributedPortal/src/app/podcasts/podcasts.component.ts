@@ -38,7 +38,12 @@ export class PodcastsComponent implements OnInit {
   delete(id:string): void {
     this.podcastService.deletePodcast(id)
       .subscribe(podcast => {
-        this.podcasts.push(podcast);
+        for(let index =0; index < this.podcasts.length; index++){
+          if (this.podcasts[index].EpisodeID == id){
+            // console.log(this.podcasts[index].EpisodeID)
+            this.podcasts.pop(this.podcasts[index]);
+          }
+        }
       })
   }
 
