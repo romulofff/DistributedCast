@@ -1,4 +1,4 @@
 [X] When Delete is called, the correct item on the list must be removed
 [] When Add is called, the item must be shown on the list with its data
-[] Order Podcast list
+[X] Order Podcast list
 [] Remake dashboard so it shows Channels not episodes

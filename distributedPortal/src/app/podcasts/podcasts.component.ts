@@ -18,6 +18,7 @@ export class PodcastsComponent implements OnInit {
       .subscribe(
         (content) => {
           this.podcasts = content.data
+          this.podcasts.sort((a, b) => (a.EpisodeID > b.EpisodeID) ? 1:-1)
         })
   }
 
