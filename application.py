@@ -210,3 +210,76 @@ class ListClass(Resource):
 
         res = { "data": itemsList}
         return res
+
+@ns.route("/listChannels")
+@ns.doc(description="Use this to retrieve all Channels from the table.")
+class ListChannelsClass(Resource):
+    @app.doc(responses={200: 'OK', 400: 'Invalid Data'})
+    def get(self):
+        dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+        table = dynamo.Table('DAD-ATV-04')
+
+        response = table.scan()
+
+        for item in response["Items"]:
+            item["EpisodeID"] = int(item["EpisodeID"])
+
+        itemsList = response["Items"]
+        authors = createAuthorsDict(itemsList)
+        
+        res = { "data": authors}
+        return res
+
+
+def createAuthorsDict(itemsList):
+    channels = []
+   
+    for item in itemsList:
+        if len(channels) > 0:    
+            for channel in channels:
+                if item["Author"] == channel["authorName"]:
+                    channel["podcasts"].append({
+                        "EpisodeID": item["EpisodeID"],
+                        "Title": item["Title"],
+                        "EpisodeLink": item["EpisodeLink"]        
+                    })
+                else:
+                    channels.append({
+                        "authorName": item["Author"],
+                        "podcasts": [{
+                            "EpisodeID": item["EpisodeID"],
+                            "Title": item["Title"],
+                            "EpisodeLink": item["EpisodeLink"]        
+                        }]
+                    })
+        else:
+            channels.append({
+                "authorName": item["Author"],
+                "podcasts": [{
+                    "EpisodeID": item["EpisodeID"],
+                    "Title": item["Title"],
+                    "EpisodeLink": item["EpisodeLink"]        
+                }]
+            })
+
+
+    return channels
+
+    # for item in itemsList:
+    #     channels.append({
+    #         "authorName": item["Author"],
+    #         "podcasts": [{
+    #             "EpisodeID": item["EpisodeID"],
+    #             "Title": item["Title"],
+    #             "EpisodeLink": item["EpisodeLink"]        
+    #         }]
+    #     })
+
+# byAuthor = {
+#   authorName: "",
+#   podcasts: {
+#       EpisodeID: 0,
+#       Title: "string",
+#       EpisodeLink: "string"        
+#   }
+# }
