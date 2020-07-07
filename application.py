@@ -14,7 +14,7 @@ app = Api(app=application,
           version="1.0",
           title="DistribuCast",
           description="This API accesses a DynamoDB table and can manage its Data.\n \
-                        Click on \'Podcast\' to use the methods GET, POST and DELTE to work with the \
+                        Click on \'Podcast\' to use the methods GET, POST and DELETE to work with the \
                         Database items. Each method section contains information on how to use it.")
 
 CORS(application)
